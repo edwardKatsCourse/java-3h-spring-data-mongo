@@ -1,0 +1,95 @@
+1. Spring Data MongoDB
+2. Custom Repository
+
+@Query()
+List<Product> findAllByCriteria()
+
+3. MongoTemplate
+
+InputStream inputStream = ...;
+
+inputStream.read();
+
+
+
+Blocking   / Asynchronous 
+IO Stream
+JDBC->JPA
+Tomcat		   Reactive
+			   
+
+2000 requests
+
+new Thread().start(); -> 1 Mb
+
+
+100 requests / 3 seconds
+100 
+100 
+100 
+100 
+100 
+100 
+100 		 / 20 seconds
+-----
+300
+
++30%
+Relational (foreign key)				  MongoDB
+User -> UserDetails						Single table 
+1		 userId=20						  database
+
+User -> UserProducts <- Product
+
+SQL										MongoDB
+Database								Database
+Table									Collection []
+Row										Document  {}
+Column									Field {"name":"A"}
+
+Cluster
+collection (a.k.a. Table)
+100 millions: a-z
+100.000.000
+100.000.001
+mongo 1				mongo 2				mongo 3
+a-g					h-q					r-z
+33M					33M					33M
+
+
+
+
+
+
+
+document user
+embedded list purchases
+altogether or separately
+
+Embedded object vs DBRef
+1. Embedded
+{
+	"name":"Simon",
+	"embedded": {
+		"color":"blue"
+	}
+}
+
+DBRef (3 referenced collections)
+users
+{
+	"id":"asdmklqmmd1oi2oim",
+	"name":"Simon",
+	"userDetails": [{
+		"uid" : "userDetailsId"
+	}]
+}
+
+userDetails
+{
+	"id" : "lkasdkn21kjd",
+	"color":"blue"
+}
+
+
+
